@@ -1,0 +1,46 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the 404 page of the site/application.
+// -----------------------------------------------------------------------------
+
+
+.pagenotfound {
+    min-height: 550px;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    z-index: 0;
+
+    &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba($base-color, .4);
+        z-index: -1;
+    }
+
+    h1 {
+        font-size: 12rem;
+        line-height: 1;
+        letter-spacing: 1rem;
+        text-shadow: 0 0 20px $primary-color;
+
+        @include md {
+            font-size: 8rem;
+            letter-spacing: .8rem;
+        }
+    }
+
+    h2 {
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+    }
+}

@@ -1,0 +1,224 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: $mid-blue;
+    z-index: 99;
+}
+
+.brand-logo {
+    height: 45px;
+    
+    img {
+        max-width: 200px;
+        height: 45px;
+    }
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    @include md {
+        padding: 1rem 0 .8rem;
+    }
+
+    .nav-burger {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+
+        @include rwd(768) {
+            display: none;
+        }
+
+        .burger-bar {
+            display: inline-block;
+            width: 25px;
+            height: 2px;
+            margin: 3px;
+            background: $white-color;
+            transform-origin: 0% 50%;
+            @include transition;
+            
+            &.bar-2 {
+                width: 13px;
+            }
+        }
+    }
+
+
+    
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+
+        @include md {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            background: $mid-blue;
+            height: calc(100vh - 73px);
+            padding: 20px;
+            transform: translateY(-100%);
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+            overflow-y: scroll;
+            z-index: 999;
+            @include transition
+        }
+
+        .searchform {
+            
+            @include md {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            @include rwd(768) {
+                margin-left: 20px
+            }
+
+            .search__group {
+                position: relative;
+                border-radius: 40px;
+                padding: 5px 20px;
+                height: 40px;
+                border: 1px solid $light-grey;
+
+                .search__input {
+                    background: transparent;
+                    color: $light-grey;
+                    border: none;
+                    height: 28px;
+                    width: 100%;
+                    padding-right: 30px;
+
+                    @include on-event {
+                        border: none;
+                        outline: none;
+                    }
+                }
+
+                button {
+                    position: absolute;
+                    background: transparent;
+                    border: none;
+                    height: 30px;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-45%);
+                    color: $light-grey;
+                    cursor: pointer;
+                }
+            }
+        }
+        
+        ul {
+            display: flex;
+
+            @include md {
+                flex-direction: column;
+                width: 100%;
+            }
+        
+            li {
+                position: relative;
+
+                &.dropdown {
+
+                    & > a {
+                        position: relative;
+                        line-height: 70px;
+
+                        @include md {
+                            line-height: 50px;
+                            justify-content: space-between;
+                        }
+                    }
+
+                    & > a:focus {
+
+                        & ~ .submenu {
+                            display: block;
+                        }
+                    }
+                }
+        
+                a {
+                    display: flex;
+                    align-items: center;
+                    padding: 0 .5rem;
+                    font-weight: 500;
+
+                    @include md {
+                        padding: 0;
+                    }
+                }
+
+                .submenu {
+                    position: absolute;
+                    right: 0;
+                    display: flex;
+                    flex-direction: column;
+                    background-color: $mid-blue;
+                    top: 100%;
+                    min-width: 150px;
+                    display: none;
+
+                    @include md {
+                        position: relative;
+                        height: 60vh;        
+                        overflow-y: scroll;
+                    }
+
+                    li a {
+                        display: block;
+                        padding: 8px 15px;
+                        
+                        @include md {
+                            padding: 8px 0;
+                        }
+
+                        &:hover {
+                            background-color: $primary-color;
+                            color: $light-grey;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    &.open {
+
+        .navbar-nav {
+            top: 73px;
+            transform: translateY(0);
+        }
+        
+        .nav-burger { 
+
+            .bar-1 {
+                transform: rotate(40deg);
+            }
+
+            .bar-2 {
+                opacity: 0;
+            }
+            
+            .bar-3 {
+                transform: rotate(-40deg);
+            }
+        }
+
+    }
+}

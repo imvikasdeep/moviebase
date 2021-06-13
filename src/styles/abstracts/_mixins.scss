@@ -1,0 +1,85 @@
+// ------------------------------------------------------------------------------------------------
+// This file contains all mixins for the application
+// ------------------------------------------------------------------------------------------------
+
+
+
+
+/// Small devices 575
+@mixin sm {
+    @media (max-width: #{map-get($breakpoints, "sm")}) {
+        @content;
+    }
+}
+
+/// Medium devices 767
+@mixin md {
+    @media (max-width: #{map-get($breakpoints, "md")}) {
+        @content;
+    }
+}
+
+/// Large devices
+@mixin lg {
+    @media (max-width: #{map-get($breakpoints, "lg")}) {
+        @content;
+    }
+}
+
+/// Extra large devices
+@mixin xl {
+    @media (max-width: #{map-get($breakpoints, "xl")}) {
+        @content;
+    }
+}
+
+
+
+
+
+/// Custom devices
+@mixin rwd($screen) {
+    @media (min-width: $screen+'px') {
+        @content;
+    }
+}
+
+/// custom Max width
+@mixin max-width($screen) {
+    @media (max-width: $screen+'px') {
+        @content;
+    }
+}
+
+
+
+
+
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+    @if $self {
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    } @else {
+        &:hover,
+        &:active,
+        &:focus {
+            @content;
+        }
+    }
+}
+
+
+
+/// Basic transition style 
+@mixin transition {
+    transition: .4s ease-in-out;
+}

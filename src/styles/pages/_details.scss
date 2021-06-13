@@ -1,0 +1,75 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the Detail page of the site/application.
+// -----------------------------------------------------------------------------
+
+.moviedetails {
+    position: relative;
+    margin-top: 81px;
+    padding-top: 300px;
+    padding-bottom: 100px;
+
+    .play {
+        margin-bottom: .8rem;
+
+        i {
+            font-size: 5rem;
+        }
+    }
+
+    .poster {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 450px;
+        background-position: center;
+        background-size: cover;
+        z-index: -1;
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: block;
+            z-index: 1;
+            background: linear-gradient(180deg, rgba($base-color, .1) 0%, $base-color 100%);
+            pointer-events: none;
+        }
+    }
+
+    .heading h1 {
+        font-size: 2.5rem;
+        font-weight: $font-reg;
+    }
+
+    .detail-list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+
+        li {
+            display: flex;
+            align-items: center;
+            padding-right: 25px;
+            font-size: .9rem;
+
+            i {
+                color: $primary-color;
+                margin-right: 5px;
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    .movie__desc {
+        max-width: 950px;
+        width: 100%;
+        line-height: 2;
+        margin-top: 2rem;
+    }
+
+}

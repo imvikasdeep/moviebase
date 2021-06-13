@@ -1,0 +1,79 @@
+// ------------------------------------------------------------------------------------------------
+// This file contains all varibles for the application
+// ------------------------------------------------------------------------------------------------
+
+
+
+
+/// Text color
+/// @type Color
+$white-color: #fff !default;
+
+/// Light Grey
+/// @type Color
+$light-grey: #e0e0e0 !default;
+
+/// Base Color
+/// @type Color
+$base-color: #131720 !default;
+
+/// Dark Blue
+/// @type Color
+$dark-blue: #131925 !default;
+
+/// Meduim Blue
+/// @type Color
+$mid-blue: #151f30 !default;
+
+/// Primary Color
+/// @type Color
+$primary-color: #e94560 !default;
+
+
+
+
+
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+
+
+
+
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  'sm': 575px,
+  'md': 767px,
+  'lg': 991px,
+  'xl': 1200px
+) !default;
+
+
+
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+// $base-url: '/assets/' !default;
+
+
+
+
+/// font weight regular
+$font-reg: 400;
+
+/// font weight medium
+$font-med: 500;
+
+/// font weight semi-bold
+$font-semi-bold: 600;
+
+/// font weight bold
+$font-bold: 600;
+
+/// font weight extra bold
+$font-ext-bold: 600;
