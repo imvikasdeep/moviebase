@@ -170,13 +170,13 @@
                     flex-direction: column;
                     background-color: $mid-blue;
                     top: 100%;
-                    min-width: 150px;
+                    min-width: 200px;
+                    height: 60vh;        
+                    overflow-y: scroll;
                     display: none;
 
                     @include md {
                         position: relative;
-                        height: 60vh;        
-                        overflow-y: scroll;
                     }
 
                     li a {
