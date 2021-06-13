@@ -14,11 +14,8 @@ const Navigation = () => {
         const data = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
         const response = await data.json();
 
-        // Add products response data to state
+        // Add genres to state
         setGenre(response.genres);
-        console.clear();
-        console.log(genres);
-        console.log(response.genres);
     }
 
 
