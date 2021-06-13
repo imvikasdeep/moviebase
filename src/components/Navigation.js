@@ -12,7 +12,7 @@ const Navigation = () => {
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Adventure</a></li>
                         <li><a href="#">Thriller</a></li>
-                        <li><a href="#">Mistory</a></li>
+                        <li><a href="#">Mistory </a></li>
                     </ul>
                 </li>
             </ul>
