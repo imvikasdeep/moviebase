@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Genre from './Genre';
 
 const Navigation = () => {
 
@@ -7,13 +9,8 @@ const Navigation = () => {
                         
             <ul>
                 <li className="dropdown">
-                    <a href="#">Genre <span className="material-icons-outlined">expand_more</span></a>
-                    <ul className="submenu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Adventure</a></li>
-                        <li><a href="#">Thriller</a></li>
-                        <li><a href="#">Mistory </a></li>
-                    </ul>
+                    <Link >Genre <span className="material-icons-outlined">expand_more</span></Link>
+                    <Genre />
                 </li>
             </ul>
             
