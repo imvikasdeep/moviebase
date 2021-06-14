@@ -2,32 +2,43 @@ import React, {useState, useEffect} from 'react';
 import { API_KEY, API_URL } from '../api/config';
 import { Link } from 'react-router-dom';
 
-const Navigation = () => {
+const Genre = () => {
 
     useEffect(() => {
         fetchGenre();
     }, []);
 
     const [genres, setGenre] = useState([]);
+    const [error, setError] = useState(null);
 
     const fetchGenre = async () => {
-        const data = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
-        const response = await data.json();
-
-        // Add genres to state
-        setGenre(response.genres);
+        fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`)
+        .then(res => {
+            console.log(res);
+            if(!res.ok) {
+                throw Error('Could not fetch the data');
+            }
+            return res.json();
+        })
+        .then(data => {
+            setGenre(data.genres);
+        })
+        .catch(err => {
+            setError(err.message);
+        })
     }
 
 
     return(
         
         <ul className="submenu">
+            { error && <div>{error}</div>}
             {genres.map(genre => (
-                <li key={genre.id}><Link to={genre.id}>{genre.name}</Link></li>
+                <li key={genre.id}><Link to={`/${genre.id}`}>{genre.name}</Link></li>
             ))}
         </ul>
         
     );
 }
 
-export default Navigation;
+export default Genre;

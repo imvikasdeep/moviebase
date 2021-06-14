@@ -9,7 +9,7 @@ const Navigation = () => {
                         
             <ul>
                 <li className="dropdown">
-                    <Link >Genre <span className="material-icons-outlined">expand_more</span></Link>
+                    <Link to="/" exact="true" >Genre <span className="material-icons-outlined">expand_more</span></Link>
                     <Genre />
                 </li>
             </ul>
