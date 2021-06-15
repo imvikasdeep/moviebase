@@ -20,7 +20,6 @@ const Card = ({ movieData }) => {
                 <a href="./details.html">{movieData.original_title}</a>
             </h2>
             <ul className="card__list">
-                <li>Action</li>
                 <li>{movieYear}</li>
             </ul>
         </div>

@@ -33,8 +33,8 @@ const Home = () => {
                 <Movielist movies={movies} />
                 
                 <div className="pagination">
-                    <a href="#" className="button">Prev</a>
-                    <a href="#" className="button">Next</a>
+                    <a href="/" className="button">Prev</a>
+                    <a href="/" className="button">Next</a>
                 </div>
 
             </div>
