@@ -7,10 +7,10 @@ const Lost = () => {
 
     return (
 
-        <div class="pagenotfound" style={{ backgroundImage: `url(${Lostbg})` }}>
+        <div className="pagenotfound" style={{ backgroundImage: `url(${Lostbg})` }}>
             <h1>404</h1>
             <h2>Oops! Looks looks like there's no movie here</h2>
-            <Link class="button" to="/">Return home</Link>
+            <Link className="button" to="/">Return home</Link>
         </div>
 
     );
