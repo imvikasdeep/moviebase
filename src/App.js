@@ -14,8 +14,8 @@ function App() {
 
 			<Switch>
 				<Route path="/" exact="true" component={Home} />
-				<Route path="/movie/:id" component={MovieDetails} />
-				<Route component={Lost} />
+				<Route path="/movie/:id" exact="true" component={MovieDetails} />
+				<Route component={Lost} exact="true" />
 			</Switch>
 
 			<Footer />

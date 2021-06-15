@@ -1,10 +1,13 @@
 import React from 'react';
 import { posterURL } from '../api/config';
+import { Link } from 'react-router-dom';
 
 const Card = ({ movieData }) => {
 
-    const releaseDate = movieData.release_date;
-    const movieYear = releaseDate.slice(0,4);
+    // Get the year from movie release date
+    let release_year = movieData.release_date;
+    release_year = new Date(release).getFullYear();
+
     const posterPath = `${posterURL}/w300/${movieData.poster_path}`;
 
     return (
@@ -14,15 +17,15 @@ const Card = ({ movieData }) => {
                 <i className="material-icons-outlined">star</i>
                 {movieData.vote_average}
             </span>
-            <a href="./details.html" className="card__cover">
+            <Link to={`movie/${movieData.id}`} className="card__cover">
                 <img src={posterPath} className="img-responsive" alt={movieData.original_title} />
-            </a>
+            </Link>
             <h2 className="card__title">
-                <a href="./details.html">{movieData.original_title}</a>
+                <Link to={`movie/${movieData.id}`}>{movieData.original_title}</Link>
             </h2>
             <ul className="card__list">
                 {movieData.adult && <li>18+</li>}
-                <li>{movieYear}</li>
+                <li>{release_year}</li>
             </ul>
         </div>
                 

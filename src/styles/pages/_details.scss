@@ -23,7 +23,7 @@
         right: 0;
         height: 450px;
         background-position: center;
-        background-size: cover;
+        background-size: contain;
         z-index: -1;
 
         &::before {
