@@ -26,15 +26,14 @@ const Home = () => {
 
                 <div className="content">
                     <div className="heading">
-                        <h1>The Trending Movies</h1>
+                        <h1>Trending Movies</h1>
                     </div>
                 </div>
 
                 <Movielist movies={movies} />
                 
-                <div className="pagination">
-                    <a href="/" className="button">Prev</a>
-                    <a href="/" className="button">Next</a>
+                <div class="load__more">
+                    <a href="/" class="button">Load All Movies</a>
                 </div>
 
             </div>
