@@ -5,6 +5,7 @@ const Card = ({ movieData }) => {
 
     const releaseDate = movieData.release_date;
     const movieYear = releaseDate.slice(0,4);
+    const posterPath = `${posterURL}/w300/${movieData.poster_path}`;
 
     return (
 
@@ -14,7 +15,7 @@ const Card = ({ movieData }) => {
                 {movieData.vote_average}
             </span>
             <a href="./details.html" className="card__cover">
-                <img src={`${posterURL}/w300/${movieData.poster_path}`} className="img-responsive" alt={movieData.original_title} />
+                <img src={posterPath} className="img-responsive" alt={movieData.original_title} />
             </a>
             <h2 className="card__title">
                 <a href="./details.html">{movieData.original_title}</a>
