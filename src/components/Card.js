@@ -6,7 +6,7 @@ const Card = ({ movieData }) => {
 
     // Get the year from movie release date
     let release_year = movieData.release_date;
-    release_year = new Date(release).getFullYear();
+    release_year = new Date(release_year).getFullYear();
 
     const posterPath = `${posterURL}/w300/${movieData.poster_path}`;
 

@@ -5,29 +5,34 @@ const MovieDetails = ({match}) => {
 
     const movieId = match.params.id;
 
-    const [movie, setMovie] = useState([]);
-
-    console.clear();
+    const [movie, setMovie] = useState({
+        genres: []
+    });
 
     const fetchMovie = async () => {
         const data = await fetch(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`);
         const resposnse = await data.json();
-
         setMovie(resposnse);
-        console.log(movie);
-        
     }    
     
     useEffect(() => {
         fetchMovie();
     }, []);
+
+    console.log(movie.genres);
     
 
-    const movie_poster = `${posterURL}/original/${movie.poster_path}`;
+    const movie_poster = `${posterURL}/original/${movie.backdrop_path}`;
 
     // Get the year from movie release date
     let release_year = movie.release_date;
-    release_year = new Date(release).getFullYear();
+    release_year = new Date(release_year).getFullYear();
+
+    // Movie runtime in Hours and Minutes
+    let time = movie.runtime;
+    var Hours = Math.floor(time /60);
+    var minutes = time % 60;
+
 
 
     return (
@@ -39,20 +44,24 @@ const MovieDetails = ({match}) => {
 
                 <section className="content">
                     <div className="play">
-                        <a href="#"><i className="material-icons-outlined">play_circle_outline</i></a>
+                        <i className="material-icons-outlined">play_circle_outline</i>
                     </div>
                     <div className="heading">
                         <h1>{movie.original_title}</h1>
                     </div>
                     <ul className="detail-list">
                         <li><i className="material-icons-outlined">star</i> {movie.vote_average}</li>
-                        <li><i className="material-icons-outlined">bolt</i> Drama &nbsp; Adventure &nbsp; Fiction</li>
+                        <li><i className="material-icons-outlined">bolt</i>
+                            {movie.genres.map(genre => (
+                                <span key={genre.id}>{genre.name} &nbsp;</span>
+                            ))}
+                        </li>
                         <li><i className="material-icons-outlined">event</i> {release_year}</li>
-                        <li><i className="material-icons-outlined">schedule</i> 2h 42 min</li>
-                        <li><i className="material-icons-outlined">perm_identity</i> 13+</li>
+                        <li><i className="material-icons-outlined">schedule</i> {Hours}h {minutes} min</li>
+                        {movie.adult && <li><i className="material-icons-outlined">perm_identity</i> 18+</li>}
                     </ul>
                     <div className="movie__desc">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe blanditiis quaerat quasi recusandae aut ipsum, consectetur voluptate! Nostrum totam quos nihil, voluptatem delectus praesentium commodi in quibusdam ullam vitae? Laudantium voluptate tempora tempore laborum. Expedita impedit provident ad, eum magnam obcaecati quisquam rem sapiente, perferendis in enim consequuntur similique officia consectetur eligendi. Iure, aliquam repellendus aperiam ipsa asperiores sapiente explicabo. Dolores repudiandae autem eius doloribus harum fugit quam, excepturi perspiciatis, vero odio illo eum numquam saepe aut voluptatum dolore maxime, est distinctio vitae. Earum debitis est dolore, non cupiditate voluptate amet totam ducimus laboriosam nostrum eius voluptatum eos natus minus?
+                        {movie.overview}
                     </div>
                 </section>
 
