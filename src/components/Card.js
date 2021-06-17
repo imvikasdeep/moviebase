@@ -17,11 +17,11 @@ const Card = ({ movieData }) => {
                 <i className="material-icons-outlined">star</i>
                 {movieData.vote_average}
             </span>
-            <Link to={`movie/${movieData.id}`} className="card__cover">
+            <Link to={`/movie/${movieData.id}`} className="card__cover">
                 <img src={posterPath} className="img-responsive" alt={movieData.original_title} />
             </Link>
             <h2 className="card__title">
-                <Link to={`movie/${movieData.id}`}>{movieData.original_title}</Link>
+                <Link to={`/movie/${movieData.id}`}>{movieData.original_title}</Link>
             </h2>
             <ul className="card__list">
                 {movieData.adult && <li>18+</li>}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Genre from './Genre';
+import Genres from './Genres';
 
 const Navigation = () => {
 
@@ -12,7 +12,7 @@ const Navigation = () => {
                     <Link to={{
                         hash: "#"
                     }} exact="true" >Genre <span className="material-icons-outlined">expand_more</span></Link>
-                    <Genre />
+                    <Genres />
                 </li>
             </ul>
             

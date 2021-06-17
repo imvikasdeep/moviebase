@@ -32,8 +32,8 @@ const Home = () => {
 
                 <Movielist movies={movies} />
                 
-                <div class="load__more">
-                    <a href="/" class="button">Load All Movies</a>
+                <div className="load__more">
+                    <a href="/" className="button">Load All Movies</a>
                 </div>
 
             </div>

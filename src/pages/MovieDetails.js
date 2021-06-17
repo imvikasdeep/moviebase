@@ -5,21 +5,31 @@ const MovieDetails = ({match}) => {
 
     const movieId = match.params.id;
 
+    // console.log(movieId);
+
     const [movie, setMovie] = useState({
         genres: []
     });
 
-    const fetchMovie = async () => {
-        const data = await fetch(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`);
-        const resposnse = await data.json();
-        setMovie(resposnse);
-    }    
+    
+    // Fetch movie details
+    
+
+    
     
     useEffect(() => {
+        
+        let fetchMovie = async () => {
+            let data = await fetch(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`);
+            let resposnse = await data.json();
+            setMovie(resposnse);
+        }
+
         fetchMovie();
+
     }, []);
 
-    console.log(movie.genres);
+    console.log('hi');
     
 
     const movie_poster = `${posterURL}/original/${movie.backdrop_path}`;

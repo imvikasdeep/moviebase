@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { API_KEY, API_URL } from '../api/config';
 import { Link } from 'react-router-dom';
 
-const Genre = () => {
+const Genres = () => {
 
     useEffect(() => {
         fetchGenre();
@@ -33,11 +33,16 @@ const Genre = () => {
         <ul className="submenu">
             { error && <div>{error}</div>}
             {genres.map(genre => (
-                <li key={genre.id}><Link to={`/${genre.id}`}>{genre.name}</Link></li>
+                <li key={genre.id}>
+                    <Link to={{
+                        pathname: `/genre/${genre.id}`,
+                        state: {genreid: genre.id}
+                    }}>{genre.name}</Link>
+                </li>
             ))}
         </ul>
         
     );
 }
 
-export default Genre;
+export default Genres;
