@@ -16,7 +16,7 @@ function App() {
 			<Switch>
 				<Route path="/" exact={true} component={Home} />
 				<Route path="/movie/:id" exact={true} component={MovieDetails} />
-				<Route path="/genre/:id" exact={true} component={Genre} />
+				<Route path="/genre/:type" exact={true} render={props => <Genre {...props} />} />
 				<Route component={Lost} exact={true} />
 			</Switch>
 

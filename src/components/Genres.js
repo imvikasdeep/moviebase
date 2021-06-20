@@ -35,9 +35,9 @@ const Genres = () => {
             {genres.map(genre => (
                 <li key={genre.id}>
                     <Link to={{
-                        pathname: `/genre/${genre.id}`,
-                        state: {genreid: genre.id}
-                    }}>{genre.name}</Link>
+                                pathname: `/genre/${genre.name.toLowerCase().replace(/ /g, `-`)}`
+                            }}
+                    >{genre.name}</Link>
                 </li>
             ))}
         </ul>
