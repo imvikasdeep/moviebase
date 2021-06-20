@@ -13,7 +13,10 @@ const Search = () => {
     const searchMovie = (e) => {
         e.preventDefault();
 
-        history.push(`/search/${input}`);
+        history.push({
+            pathname: `/search/${input.toLowerCase().replace(/ /g, '-')}`,
+            state: input
+        });
     }
 
     return(
