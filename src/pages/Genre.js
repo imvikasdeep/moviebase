@@ -20,7 +20,6 @@ const Genre = ({match}) => {
     const getData = async () => {
         let data = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
         let resposnse = await data.json();
-        // console.log(resposnse.genres)
         
         let filterGenre = resposnse.genres.find(genre => genre.name.toLowerCase() === genreName);
         
