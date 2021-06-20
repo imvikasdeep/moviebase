@@ -1,0 +1,33 @@
+import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
+
+const Search = () => {
+
+    const [input, setInput] = useState('');
+    let history = useHistory();
+
+    const handleInput = (e) => {
+        setInput(e.target.value)
+    }
+
+    const searchMovie = (e) => {
+        e.preventDefault();
+
+        history.push(`/search/${input}`);
+    }
+
+    return(
+            
+        <form className="searchform" onSubmit={searchMovie}>
+            <div className="search__group">
+                <input type="text" className="search__input" value={input} onChange={handleInput} placeholder="Search" />
+                <button type="submit">
+                    <i className="material-icons-outlined">search</i>
+                </button>
+            </div>
+        </form>
+
+    );
+}
+
+export default Search;
