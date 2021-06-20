@@ -1,6 +1,7 @@
 import React from 'react';
 import { posterURL } from '../api/config';
 import { Link } from 'react-router-dom';
+import ImageNotFound from '../images/not-found.png';
 
 const Card = ({ movieData }) => {
 
@@ -8,7 +9,15 @@ const Card = ({ movieData }) => {
     let release_year = movieData.release_date;
     release_year = new Date(release_year).getFullYear();
 
-    const posterPath = `${posterURL}/w300/${movieData.poster_path}`;
+    function poster () {
+        
+        // check if poster is not null
+        if (!movieData.poster_path) {
+           return ImageNotFound;
+        } else {
+            return `${posterURL}/w300/${movieData.poster_path}`;
+        }
+    } 
 
     return (
 
@@ -18,7 +27,7 @@ const Card = ({ movieData }) => {
                 {movieData.vote_average}
             </span>
             <Link to={`/movie/${movieData.id}`} className="card__cover">
-                <img src={posterPath} className="img-responsive" alt={movieData.original_title} />
+                <img src={poster()} className="img-responsive" alt={movieData.original_title} />
             </Link>
             <h2 className="card__title">
                 <Link to={`/movie/${movieData.id}`}>{movieData.original_title}</Link>
