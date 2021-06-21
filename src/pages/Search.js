@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Movielist from '../components/Movielist';
+import Error from '../components/Error';
 import { API_KEY, API_URL } from '../api/config';
 
 const Search = () => {
@@ -9,19 +10,50 @@ const Search = () => {
     searchQuery = searchQuery.search;
 
     const [movies, setMovies] = useState([]);
+    const [error, setError] = useState(null)
 
-    const fetchMovies = async () => {
-        const data = await fetch(`${API_URL}search/movie?api_key=${API_KEY}&query=${searchQuery}`);
-        const resposnse = await data.json();
-
-        setMovies(resposnse.results);
-        
-    }
+    
 
     useEffect(() => {
+
+        const fetchMovies = async () => {
+            await fetch(`${API_URL}search/movie?api_key=${API_KEY}&query=${searchQuery}`)
+            .then(res => {
+                if(!res.ok) {
+                    throw Error('Could not fetch the data');
+                }
+                return res.json();
+            })
+            .then(data => {
+                setMovies(data.results);
+            })
+            .catch(err => {
+                setError(1);
+            })
+            
+        }
+        
         fetchMovies();
-        console.log(movies);
+
     }, [searchQuery]);
+
+
+    if (error === 1) {
+        return(
+            <Error />
+        );
+    }
+
+
+    if (movies === undefined || movies.length === 0) {
+        return (
+            <div className="pagenotfound">
+                <h1>Oops!</h1>
+                <h2>Could not find any result matching "{searchQuery.replace(/-/g, ' ')}"</h2>
+                <Link className="button" to="/">Return home</Link>
+            </div>
+        )
+    }
 
     return (
 

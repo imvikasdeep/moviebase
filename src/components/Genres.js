@@ -12,7 +12,7 @@ const Genres = () => {
     const [error, setError] = useState(null);
 
     const fetchGenre = async () => {
-        fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`)
+        await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`)
         .then(res => {
             if(!res.ok) {
                 throw Error('Could not fetch the data');
