@@ -12,7 +12,7 @@ const Search = () => {
 
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(0);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(1);
 
     
 

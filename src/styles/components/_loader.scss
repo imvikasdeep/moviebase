@@ -5,15 +5,17 @@
 
 .loader {
     height: 70vh;
+    margin-top: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
 
     .spinner {
-        height: 70px;
-        width: 70px;
-        border: 4px dashed $primary-color;
-        animation: 20s rotate linear infinite;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        border: 7px dashed $primary-color;
+        animation: 5s rotate linear infinite;
     }
 }
 

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Movielist from '../components/Movielist';
+import Loader from '../components/Loader';
 import { API_KEY, API_URL } from '../api/config';
 
 const Genre = ({match}) => {
@@ -8,6 +9,7 @@ const Genre = ({match}) => {
 
 
     const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(1);
 
     let fetchMovies = async (genreId) => {
         let data = await fetch(`${API_URL}discover/movie?api_key=${API_KEY}&with_genres=${genreId}`);
@@ -15,6 +17,7 @@ const Genre = ({match}) => {
         console.log(resposnse);
 
         setMovies(resposnse.results);
+        setLoading(0);
     }
 
     const getData = async () => {
@@ -33,6 +36,15 @@ const Genre = ({match}) => {
     useEffect(() => {
         getData();
     }, [genreName]);
+
+
+
+    if (loading) {
+        return(
+            <Loader />
+        );
+    }
+
 
     return (
 

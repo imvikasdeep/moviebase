@@ -678,6 +678,51 @@ h1, h2, h3, h4, h5, h6 {
   color: #e94560;
 }
 
+.loader {
+  height: 70vh;
+  margin-top: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loader .spinner {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 7px dashed #e94560;
+  -webkit-animation: 5s rotate linear infinite;
+          animation: 5s rotate linear infinite;
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 .pagination {
   display: -webkit-box;
   display: -ms-flexbox;
