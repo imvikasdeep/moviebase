@@ -10,17 +10,12 @@ const MovieDetails = ({match}) => {
     const [movie, setMovie] = useState({
         genres: []
     });
-
-    
-    // Fetch movie details
-    
-
-    
     
     useEffect(() => {
 
         window.scrollTo(0, 0);
         
+        // Fetch movie details
         let fetchMovie = async () => {
             let data = await fetch(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`);
             let resposnse = await data.json();
