@@ -1,0 +1,27 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles Loader
+// -----------------------------------------------------------------------------
+
+
+.loader {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .spinner {
+        height: 70px;
+        width: 70px;
+        border: 4px dashed $primary-color;
+        animation: 20s rotate linear infinite;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

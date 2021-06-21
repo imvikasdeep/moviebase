@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
 import Movielist from '../components/Movielist';
 import Error from '../components/Error';
+import Loader from '../components/Loader';
 import { API_KEY, API_URL } from '../api/config';
 
 const Search = () => {
@@ -10,7 +11,8 @@ const Search = () => {
     searchQuery = searchQuery.search;
 
     const [movies, setMovies] = useState([]);
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     
 
@@ -26,6 +28,7 @@ const Search = () => {
             })
             .then(data => {
                 setMovies(data.results);
+                setLoading(0);
             })
             .catch(err => {
                 setError(1);
@@ -37,8 +40,17 @@ const Search = () => {
 
     }, [searchQuery]);
 
+    
+    console.log(loading);
 
-    if (error === 1) {
+    if (loading) {
+        return(
+            <Loader />
+        );
+    }
+
+
+    if (error) {
         return(
             <Error />
         );
