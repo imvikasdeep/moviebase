@@ -17,6 +17,8 @@ const Search = () => {
             pathname: `/search/${input.toLowerCase().replace(/ /g, '-')}`,
             state: input
         });
+
+        setInput('');
     }
 
     return(
