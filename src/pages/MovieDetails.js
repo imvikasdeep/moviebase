@@ -18,6 +18,8 @@ const MovieDetails = ({match}) => {
     
     
     useEffect(() => {
+
+        window.scrollTo(0, 0);
         
         let fetchMovie = async () => {
             let data = await fetch(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`);
