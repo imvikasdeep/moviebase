@@ -11,7 +11,7 @@ const Home = () => {
     const [movies, setMovies] = useState([]);
 
     const fetchMovies = async () => {
-        const data = await fetch(`${API_URL}/trending/movie/week?api_key=${API_KEY}&page=3`);
+        const data = await fetch(`${API_URL}/trending/movie/week?api_key=${API_KEY}`);
         const resposnse = await data.json();
 
         setMovies(resposnse.results);
