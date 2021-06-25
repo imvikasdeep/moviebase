@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Loader from '../components/Loader';
+import Error from '../components/Error';
 import { API_KEY, API_URL, posterURL } from '../api/config';
 
 const MovieDetails = ({match}) => {
@@ -13,6 +14,7 @@ const MovieDetails = ({match}) => {
     });
     
     const [loading, setLoading] = useState(1);
+    const [error, setError] = useState(0);
     
     useEffect(() => {
 
@@ -20,17 +22,28 @@ const MovieDetails = ({match}) => {
         
         // Fetch movie details
         let fetchMovie = async () => {
-            let data = await fetch(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`);
-            let resposnse = await data.json();
-            setMovie(resposnse);
-            setLoading(0);
+                await fetch(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`)
+                .then(res => {
+                    if(!res.ok) {
+                        throw Error('Could not fetch the data');
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    setMovie(data);
+                    setLoading(0);
+                })
+                .catch(err => {
+                    setLoading(0);
+                    setError(1);
+                })
+        
         }
 
         fetchMovie();
 
-    }, []);
 
-    
+    }, []);
 
     const movie_poster = `${posterURL}/original/${movie.backdrop_path}`;
 
@@ -43,10 +56,16 @@ const MovieDetails = ({match}) => {
     var Hours = Math.floor(time /60);
     var minutes = time % 60;
 
-    if(loading) {
+    if (loading) {
         return (
             <Loader />
-        )
+        );
+    }
+
+    if ( error ) {
+        return (
+            <Error />
+        );
     }
 
     return (
