@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Loader from '../components/Loader';
 import { API_KEY, API_URL, posterURL } from '../api/config';
 
 const MovieDetails = ({match}) => {
@@ -11,6 +12,8 @@ const MovieDetails = ({match}) => {
         genres: []
     });
     
+    const [loading, setLoading] = useState(1);
+    
     useEffect(() => {
 
         window.scrollTo(0, 0);
@@ -20,13 +23,13 @@ const MovieDetails = ({match}) => {
             let data = await fetch(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`);
             let resposnse = await data.json();
             setMovie(resposnse);
+            setLoading(0);
         }
 
         fetchMovie();
 
     }, []);
 
-    console.log('hi');
     
 
     const movie_poster = `${posterURL}/original/${movie.backdrop_path}`;
@@ -40,7 +43,11 @@ const MovieDetails = ({match}) => {
     var Hours = Math.floor(time /60);
     var minutes = time % 60;
 
-
+    if(loading) {
+        return (
+            <Loader />
+        )
+    }
 
     return (
 

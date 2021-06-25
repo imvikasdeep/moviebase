@@ -34,7 +34,7 @@ const Card = ({ movieData }) => {
             </h2>
             <ul className="card__list">
                 {movieData.adult && <li>18+</li>}
-                <li>{release_year}</li>
+                <li>{!isNaN(release_year) && release_year}</li>
             </ul>
         </div>
                 
