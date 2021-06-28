@@ -23,7 +23,7 @@
     text-transform: uppercase;
     @include transition;
 
-    &:hover {
+    &:hover, &focus {
         background-color: darken($primary-color, 20%);
         border-color: darken($primary-color, 20%);
         color: $light-grey;
