@@ -1,22 +1,29 @@
 import React, {useState, useEffect} from 'react';
+import queryString from 'query-string';
 import Movielist from '../components/Movielist';
 import Loader from '../components/Loader';
+import Pagination from '../components/pagination';
 import { API_KEY, API_URL } from '../api/config';
+import { useLocation } from 'react-router';
 
 const Genre = ({match}) => {
 
     let genreName = match.params.type.replace(/-/g, ' ');
 
+    const parsed = queryString.parse(useLocation().search);
+    let pageNo = parsed.page || 1;
 
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState({
+        results: []
+    });
     const [loading, setLoading] = useState(1);
 
     let fetchMovies = async (genreId) => {
-        let data = await fetch(`${API_URL}discover/movie?api_key=${API_KEY}&with_genres=${genreId}`);
+        setLoading(1);
+        let data = await fetch(`${API_URL}discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${pageNo}`);
         let resposnse = await data.json();
-        console.log(resposnse);
 
-        setMovies(resposnse.results);
+        setMovies(resposnse);
         setLoading(0);
     }
 
@@ -32,10 +39,13 @@ const Genre = ({match}) => {
             fetchMovies(filterGenre.id);
         }
     }
+
     
     useEffect(() => {
+        window.scrollTo(0, 0);
+
         getData();
-    }, [genreName]);
+    }, [genreName, pageNo]);
 
 
 
@@ -57,12 +67,9 @@ const Genre = ({match}) => {
                     </div>
                 </div>
 
-                <Movielist movies={movies} />
+                <Movielist movies={movies.results} />
                 
-                <div className="pagination">
-                    <a href="/" className="button">Prev</a>
-                    <a href="/" className="button">Next</a>
-                </div>
+                <Pagination currentPage={movies.page} totalPages={movies.total_pages}/>
 
             </div>
         </main>

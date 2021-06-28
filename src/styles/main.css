@@ -518,7 +518,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: .4s ease-in-out;
 }
 
-.button:hover {
+.button:hover, .buttonfocus {
   background-color: #b3152f;
   border-color: #b3152f;
   color: #e0e0e0;
