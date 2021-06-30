@@ -1,25 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
+import queryString from 'query-string';
 import Movielist from '../components/Movielist';
 import Error from '../components/Error';
 import Loader from '../components/Loader';
+import Pagination from '../components/pagination';
 import { API_KEY, API_URL } from '../api/config';
+import { useLocation } from 'react-router';
 
 const Search = () => {
 
     let searchQuery = useParams();
     searchQuery = searchQuery.search;
 
-    const [movies, setMovies] = useState([]);
+    const parsed = queryString.parse(useLocation().search);
+    let pageNo = parsed.page || 1;
+
+    const [movies, setMovies] = useState({
+        results: []
+    });
     const [error, setError] = useState(0);
     const [loading, setLoading] = useState(1);
 
     
 
     useEffect(() => {
+        window.scrollTo(0, 0);
 
         const fetchMovies = async () => {
-            await fetch(`${API_URL}search/movie?api_key=${API_KEY}&query=${searchQuery}`)
+            
+            setLoading(1);
+            await fetch(`${API_URL}search/movie?api_key=${API_KEY}&query=${searchQuery}&page=${pageNo}`)
             .then(res => {
                 if(!res.ok) {
                     throw Error('Could not fetch the data');
@@ -27,7 +38,7 @@ const Search = () => {
                 return res.json();
             })
             .then(data => {
-                setMovies(data.results);
+                setMovies(data);
                 setLoading(0);
             })
             .catch(err => {
@@ -38,7 +49,7 @@ const Search = () => {
         
         fetchMovies();
 
-    }, [searchQuery]);
+    }, [searchQuery, pageNo]);
 
     
     console.log(loading);
@@ -78,12 +89,9 @@ const Search = () => {
                     </div>
                 </div>
 
-                <Movielist movies={movies} />
+                <Movielist movies={movies.results} />
                 
-                <div className="pagination">
-                    <a href="/" className="button">Prev</a>
-                    <a href="/" className="button">Next</a>
-                </div>
+                <Pagination currentPage={movies.page} totalPages={movies.total_pages}/>
 
             </div>
         </main>
