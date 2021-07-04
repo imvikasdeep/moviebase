@@ -7,6 +7,35 @@
 
     .heading {
         margin-top: 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+            display: flex;
+            border: 1px solid;
+            font-weight: 600;
+            border-radius: 5px;
+            padding: 4px 10px;
+
+            i{
+                display: none;
+                font-size: 1.2rem;
+            }
+
+            @include md {
+                border: none;
+                padding: 0;
+                color: $primary-color;
+
+                span {
+                    display: none;
+                }
+                i {
+                    display: block;
+                }
+            }
+        }
 
         h1 {
             text-transform: capitalize;
