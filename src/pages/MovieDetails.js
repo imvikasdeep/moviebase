@@ -1,20 +1,38 @@
 import React, {useState, useEffect} from 'react';
 import Loader from '../components/Loader';
 import Error from '../components/Error';
+import Movielist from '../components/Movielist';
 import { API_KEY, API_URL, posterURL } from '../api/config';
 
 const MovieDetails = ({match}) => {
 
     const movieId = match.params.id;
 
-    // console.log(movieId);
-
     const [movie, setMovie] = useState({
         genres: []
     });
+
+    const [trailer, setTrailer] = useState([]);
+    const [similarMovies, setSimilarMovies] = useState([]);
     
     const [loading, setLoading] = useState(1);
     const [error, setError] = useState(0);
+
+    const fetchVideos = async() => {
+        const data = await fetch(`${API_URL}/movie/${movieId}/videos?api_key=${API_KEY}`);
+        const resposnse = await data.json();
+        
+        let videos = resposnse.results;
+        let getTrailer = resposnse.results.find(videos => videos.type === 'Trailer');
+        setTrailer(getTrailer);
+    }
+
+    const fetchSimilarMovies = async() => {
+        const data = await fetch(`${API_URL}/movie/${movieId}/similar?api_key=${API_KEY}`);
+        const resposnse = await data.json();
+
+        setSimilarMovies(resposnse.results);
+    }
     
     useEffect(() => {
 
@@ -41,9 +59,11 @@ const MovieDetails = ({match}) => {
         }
 
         fetchMovie();
+        fetchVideos();
+        fetchSimilarMovies();
 
 
-    }, []);
+    }, [movieId]);
 
     const movie_poster = `${posterURL}/original/${movie.backdrop_path}`;
 
@@ -55,6 +75,9 @@ const MovieDetails = ({match}) => {
     let time = movie.runtime;
     var Hours = Math.floor(time /60);
     var minutes = time % 60;
+
+    // Trailer link
+    const trailerLink = `https://www.youtube.com/watch?v=${trailer.key}`;
 
     if (loading) {
         return (
@@ -76,11 +99,15 @@ const MovieDetails = ({match}) => {
                 <section className="poster" style={{ backgroundImage: `url(${movie_poster})` }}></section>
 
                 <section className="content">
-                    <div className="play">
-                        <i className="material-icons-outlined">play_circle_outline</i>
-                    </div>
+                    {trailer.key !== null && trailer.key !== undefined && trailer.key !== '' ? (    
+                        <a href={trailerLink} target="_blank" className="play">
+                            <i className="material-icons-outlined">play_circle_outline</i>
+                        </a>
+                    ) : (
+                        <React.Fragment />
+                    )}
                     <div className="heading">
-                        <h1>{movie.original_title}</h1>
+                        <h1 className="movieTitle">{movie.original_title}</h1>
                     </div>
                     <ul className="detail-list">
                         <li><i className="material-icons-outlined">star</i> {movie.vote_average}</li>
@@ -97,6 +124,20 @@ const MovieDetails = ({match}) => {
                         {movie.overview}
                     </div>
                 </section>
+
+                {similarMovies !== undefined && similarMovies !== null && similarMovies.length !== 0 ? (
+                    <React.Fragment>
+                        <div className="content">
+                            <div className="heading">
+                                <h1>You may also like</h1>
+                            </div>
+                        </div>
+
+                        <Movielist movies={similarMovies.slice(0, 5)} swipeClass="swipe"/>
+                    </React.Fragment>
+                ) : (
+                    <React.Fragment />
+                )}
 
             </div>
         </main>
