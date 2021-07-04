@@ -1,10 +1,11 @@
 import React from 'react'
 import Card from './Card';
 
-const Movielist = ({movies}) => {
+const Movielist = ({movies, swipeClass}) => {
+
     return (
         
-        <div className="cards-wrapper">
+        <div className={`cards-wrapper ${swipeClass ? swipeClass : ``}`}>
 
             {movies.map(movie => (
                 
