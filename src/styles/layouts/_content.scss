@@ -6,10 +6,12 @@
 .content {
 
     .heading {
+        margin-top: 3rem;
 
         h1 {
             text-transform: capitalize;
             font-size: 1.7rem;
+            margin: 0;
             color: $white-color;
 
             @include md {
