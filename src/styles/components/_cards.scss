@@ -8,6 +8,37 @@
     flex-wrap: wrap;
     margin: 0 -10px;
 
+   @include md {
+        &.swipe {
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+
+            .card {
+                flex-shrink: 0;
+                width: ($max-width / 12);
+
+                .card__rating {
+                    right: 5px;
+                    top: 5px;
+                    border-radius: 5px;
+                    font-size: .6rem;
+                    padding: 3px 5px;
+
+                    i {
+                        font-size: .8rem;
+                    }
+                }
+
+                .card__title {
+                    font-size: .8rem;
+                    white-space: break-spaces;
+                    margin-bottom: .4rem;
+                    line-height: 1.2;
+                }
+            }
+        }
+   }
+
 
     .card {
         position: relative;
