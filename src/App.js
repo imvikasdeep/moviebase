@@ -5,6 +5,9 @@ import MovieDetails from './pages/MovieDetails';
 import Genre from './pages/Genre';
 import Search from './pages/Search';
 import Lost from './pages/Lost';
+import Upcoming from './pages/Upcoming';
+import TopRated from './pages/TopRated';
+import Trending from './pages/Trending';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './styles/main.scss';
 
@@ -17,6 +20,9 @@ function App() {
 			<Switch>
 				<Route path="/" exact={true} component={Home} />
 				<Route path="/movie/:id" exact={true} component={MovieDetails} />
+				<Route path="/upcoming" exact={true} component={Upcoming} />
+				<Route path="/top-rated" exact={true} component={TopRated} />
+				<Route path="/trending" exact={true} component={Trending} />
 				<Route path="/genre/:type" exact={true} render={props => <Genre {...props} />} />
 				<Route path="/search/:search" exact={true} render={props => <Search {...props} />} />
 				<Route component={Lost} exact={true} />
