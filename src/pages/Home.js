@@ -50,7 +50,7 @@ const Home = () => {
                         <div className="content">
                             <div className="heading">
                                 <h1>Trending</h1>
-                                <Link to="/trending"><span>View All</span> <i class="material-icons-outlined">arrow_forward</i></Link>
+                                <Link to="/trending"><span>View All</span> <i className="material-icons-outlined">arrow_forward</i></Link>
                             </div>
                         </div>
 
@@ -67,7 +67,7 @@ const Home = () => {
                         <div className="content">
                             <div className="heading">
                                 <h1>Top Rated</h1>
-                                <Link to="/top-rated"><span>View All</span> <i class="material-icons-outlined">arrow_forward</i></Link>
+                                <Link to="/top-rated"><span>View All</span> <i className="material-icons-outlined">arrow_forward</i></Link>
                             </div>
                         </div>
 
@@ -85,7 +85,7 @@ const Home = () => {
                         <div className="content">
                             <div className="heading">
                                 <h1>Upcoming</h1>
-                                <Link to="/upcoming"><span>View All</span> <i class="material-icons-outlined">arrow_forward</i></Link>
+                                <Link to="/upcoming"><span>View All</span> <i className="material-icons-outlined">arrow_forward</i></Link>
                             </div>
                         </div>
 

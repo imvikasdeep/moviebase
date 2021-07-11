@@ -64,7 +64,7 @@
             width: 100%;
             left: 0;
             background: $mid-blue;
-            height: calc(100vh - 73px);
+            height: calc(100vh - 64px);
             padding: 20px;
             transform: translateY(-100%);
             flex-direction: column-reverse;
@@ -201,7 +201,7 @@
     &.open {
 
         .navbar-nav {
-            top: 73px;
+            top: 64px;
             transform: translateY(0);
         }
         

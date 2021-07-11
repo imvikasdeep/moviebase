@@ -26,7 +26,7 @@ const Header = () => {
                         <span className="burger-bar bar-3"></span>
                     </div>
 
-                    <Navigation />
+                    <Navigation settoggleMenu={settoggleMenu} toggleMenu={toggleMenu}/>
 
                 </div>
 
