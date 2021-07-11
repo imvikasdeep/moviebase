@@ -10,6 +10,15 @@ const Navigation = () => {
                         
             <ul>
                 <li className="dropdown">
+                    <Link to="trending">Trending</Link>
+                </li>
+                <li className="dropdown">
+                    <Link to="top-rated">Top-rated</Link>
+                </li>
+                <li className="dropdown">
+                    <Link to="upcoming">Unpcoming</Link>
+                </li>
+                <li className="dropdown">
                     <Link to={{
                         hash: "#"
                     }} exact="true" >Genre <span className="material-icons-outlined">expand_more</span></Link>
