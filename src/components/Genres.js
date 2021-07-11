@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { API_KEY, API_URL } from '../api/config';
 import { Link } from 'react-router-dom';
 
-const Genres = ({settoggleMenu, toggleMenu}) => {
+const Genres = ({toggleMenu}) => {
 
     useEffect(() => {
         fetchGenre();
@@ -34,7 +34,7 @@ const Genres = ({settoggleMenu, toggleMenu}) => {
             { error && <div>{error}</div>}
             {genres.map(genre => (
                 <li key={genre.id}>
-                    <Link onClick={() => settoggleMenu(!toggleMenu)} to={{
+                    <Link onClick={toggleMenu} to={{
                                 pathname: `/genre/${genre.name.toLowerCase().replace(/ /g, `-`)}`
                             }}
                     >{genre.name}</Link>

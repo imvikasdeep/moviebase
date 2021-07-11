@@ -7,6 +7,12 @@ const Header = () => {
 
     const [toggleMenu, settoggleMenu] = useState(0); /// initially flase indicates menu closed
 
+
+    const handleMenu = () => {
+        settoggleMenu(!toggleMenu);
+    }
+
+    
     /// Handle moblie menu drawer
     const openMenu = toggleMenu ? 'open' : '';
     
@@ -20,13 +26,13 @@ const Header = () => {
                         <img src={logo} className="img-responsive" alt="" />
                     </Link>
 
-                    <div className="nav-burger" onClick={() => settoggleMenu(!toggleMenu)}>
+                    <div className="nav-burger" onClick={handleMenu}>
                         <span className="burger-bar bar-1"></span>
                         <span className="burger-bar bar-2"></span>
                         <span className="burger-bar bar-3"></span>
                     </div>
 
-                    <Navigation settoggleMenu={settoggleMenu} toggleMenu={toggleMenu}/>
+                    <Navigation toggleMenu={handleMenu}/>
 
                 </div>
 

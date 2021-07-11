@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 
-const Search = () => {
+const Search = ({toggleMenu}) => {
 
     const [input, setInput] = useState('');
     let history = useHistory();
@@ -18,6 +18,7 @@ const Search = () => {
                 pathname: `/search/${input.toLowerCase().replace(/ /g, '-')}`,
                 state: input
             });
+            toggleMenu();
         }
 
         setInput('');
