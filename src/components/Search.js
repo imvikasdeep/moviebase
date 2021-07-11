@@ -6,17 +6,19 @@ const Search = () => {
     const [input, setInput] = useState('');
     let history = useHistory();
 
-    const handleInput = (e) => {
+    const handleInput = (e) => {;
         setInput(e.target.value)
     }
 
     const searchMovie = (e) => {
         e.preventDefault();
 
-        history.push({
-            pathname: `/search/${input.toLowerCase().replace(/ /g, '-')}`,
-            state: input
-        });
+        if(input.length > 0) {
+            history.push({
+                pathname: `/search/${input.toLowerCase().replace(/ /g, '-')}`,
+                state: input
+            });
+        }
 
         setInput('');
     }
