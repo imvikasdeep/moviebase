@@ -34,7 +34,7 @@ const Genres = ({settoggleMenu, toggleMenu}) => {
             { error && <div>{error}</div>}
             {genres.map(genre => (
                 <li key={genre.id}>
-                    <Link exact="true" onClick={() => settoggleMenu(!toggleMenu)} to={{
+                    <Link onClick={() => settoggleMenu(!toggleMenu)} to={{
                                 pathname: `/genre/${genre.name.toLowerCase().replace(/ /g, `-`)}`
                             }}
                     >{genre.name}</Link>

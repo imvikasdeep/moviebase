@@ -16,7 +16,7 @@ const Header = () => {
             <div className="container">
 
                 <div className={`navbar ${openMenu}`}>
-                    <Link to="/" exact="true" className="brand-logo">
+                    <Link to="/" className="brand-logo">
                         <img src={logo} className="img-responsive" alt="" />
                     </Link>
 
