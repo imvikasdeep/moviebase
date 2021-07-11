@@ -18,21 +18,6 @@ const MovieDetails = ({match}) => {
     const [loading, setLoading] = useState(1);
     const [error, setError] = useState(0);
 
-    const fetchVideos = async() => {
-        const data = await fetch(`${API_URL}/movie/${movieId}/videos?api_key=${API_KEY}`);
-        const resposnse = await data.json();
-        
-        let videos = resposnse.results;
-        let getTrailer = resposnse.results.find(videos => videos.type === 'Trailer');
-        setTrailer(getTrailer);
-    }
-
-    const fetchSimilarMovies = async() => {
-        const data = await fetch(`${API_URL}/movie/${movieId}/similar?api_key=${API_KEY}`);
-        const resposnse = await data.json();
-
-        setSimilarMovies(resposnse.results);
-    }
     
     useEffect(() => {
 
@@ -56,6 +41,23 @@ const MovieDetails = ({match}) => {
                     setError(1);
                 })
         
+        }
+
+        
+        const fetchVideos = async() => {
+            const data = await fetch(`${API_URL}/movie/${movieId}/videos?api_key=${API_KEY}`);
+            const resposnse = await data.json();
+            
+            
+            let getTrailer = resposnse.results.find(videos => videos.type === 'Trailer');
+            setTrailer(getTrailer);
+        }
+
+        const fetchSimilarMovies = async() => {
+            const data = await fetch(`${API_URL}/movie/${movieId}/similar?api_key=${API_KEY}`);
+            const resposnse = await data.json();
+
+            setSimilarMovies(resposnse.results);
         }
 
         fetchMovie();
@@ -100,7 +102,7 @@ const MovieDetails = ({match}) => {
 
                 <section className="content">
                     {trailer.key !== null && trailer.key !== undefined && trailer.key !== '' ? (    
-                        <a href={trailerLink} target="_blank" className="play">
+                        <a href={trailerLink} target="_blank" rel="noreferrer" className="play">
                             <i className="material-icons-outlined">play_circle_outline</i>
                         </a>
                     ) : (

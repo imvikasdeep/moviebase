@@ -18,31 +18,37 @@ const Genre = ({match}) => {
     });
     const [loading, setLoading] = useState(1);
 
-    let fetchMovies = async (genreId) => {
-        setLoading(1);
-        let data = await fetch(`${API_URL}discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${pageNo}`);
-        let resposnse = await data.json();
+    
 
-        setMovies(resposnse);
-        setLoading(0);
-    }
-
-    const getData = async () => {
-        let data = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
-        let resposnse = await data.json();
-        
-        let filterGenre = resposnse.genres.find(genre => genre.name.toLowerCase() === genreName);
-        
-        if (!filterGenre || filterGenre === undefined) {
-            console.log('error');
-        } else {
-            fetchMovies(filterGenre.id);
-        }
-    }
+    
 
     
     useEffect(() => {
+        
         window.scrollTo(0, 0);
+        
+        let fetchMovies = async (genreId) => {
+            setLoading(1);
+            let data = await fetch(`${API_URL}discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${pageNo}`);
+            let resposnse = await data.json();
+    
+            setMovies(resposnse);
+            setLoading(0);
+        }
+
+        
+        const getData = async () => {
+            let data = await fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`);
+            let resposnse = await data.json();
+            
+            let filterGenre = resposnse.genres.find(genre => genre.name.toLowerCase() === genreName);
+            
+            if (!filterGenre || filterGenre === undefined) {
+                console.log('error');
+            } else {
+                fetchMovies(filterGenre.id);
+            }
+        }
 
         getData();
     }, [genreName, pageNo]);
