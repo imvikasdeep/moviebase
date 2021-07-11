@@ -13,11 +13,10 @@
 }
 
 .brand-logo {
-    height: 45px;
+    display: flex;
     
     img {
-        max-width: 200px;
-        height: 45px;
+        max-width: 160px;
     }
 }
 
