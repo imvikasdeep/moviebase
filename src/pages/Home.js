@@ -10,7 +10,7 @@ const Home = () => {
     const [upcoming, setUpcoming] = useState([]);
 
     const fetchTrendingMovies = async () => {
-        const data = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=b39f865fb2aacf020030e5d7d8d3290d`);
+        const data = await fetch(`${API_URL}/trending/movie/week?api_key=${API_KEY}`);
         const resposnse = await data.json();
 
         setTrending(resposnse.results);
