@@ -10,13 +10,13 @@ const Navigation = ({settoggleMenu, toggleMenu}) => {
                         
             <ul>
                 <li className="dropdown">
-                    <Link to="trending" onClick={() => settoggleMenu(!toggleMenu)}>Trending</Link>
+                    <Link to="trending" exact="true" onClick={() => settoggleMenu(!toggleMenu)}>Trending</Link>
                 </li>
                 <li className="dropdown">
-                    <Link to="top-rated" onClick={() => settoggleMenu(!toggleMenu)}>Top-rated</Link>
+                    <Link to="top-rated" exact="true" onClick={() => settoggleMenu(!toggleMenu)}>Top-rated</Link>
                 </li>
                 <li className="dropdown">
-                    <Link to="upcoming" onClick={() => settoggleMenu(!toggleMenu)}>Unpcoming</Link>
+                    <Link to="upcoming" exact="true" onClick={() => settoggleMenu(!toggleMenu)}>Unpcoming</Link>
                 </li>
                 <li className="dropdown">
                     <Link to={{
