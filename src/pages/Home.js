@@ -58,9 +58,7 @@ const Home = () => {
                     </React.Fragment>
                 ) : (
                     <div className="content">
-                        <div className="heading">
-                            <h1>Could not load trending movies</h1>
-                        </div>
+                        
                     </div>
                 )}
 
@@ -77,9 +75,7 @@ const Home = () => {
                     </React.Fragment>
                 ) : (
                     <div className="content">
-                        <div className="heading">
-                            <h1>Could not load Top Rated movies</h1>
-                        </div>
+                        
                     </div>
                 )}
 
@@ -97,9 +93,7 @@ const Home = () => {
                     </React.Fragment>
                 ) : (
                     <div className="content">
-                        <div className="heading">
-                            <h1>Could not load Upcoming movies</h1>
-                        </div>
+                        
                     </div>
                 )}    
     
