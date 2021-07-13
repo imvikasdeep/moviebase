@@ -25,39 +25,42 @@ const MovieDetails = ({match}) => {
         
         // Fetch movie details
         let fetchMovie = async () => {
-                await fetch(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`)
-                .then(res => {
-                    if(!res.ok) {
-                        throw Error('Could not fetch the data');
-                    }
-                    return res.json();
-                })
-                .then(data => {
-                    setMovie(data);
-                    setLoading(0);
-                })
-                .catch(err => {
-                    setLoading(0);
-                    setError(1);
-                })
+            await fetch(`${API_URL}/movie/${movieId}?api_key=${API_KEY}`)
+            .then(res => {
+                if(!res.ok) {
+                    throw Error('Could not fetch the data');
+                }
+                return res.json();
+            })
+            .then(data => {
+                setMovie(data);
+                setLoading(0);
+            })
+            .catch(err => {
+                setLoading(0);
+                setError(1);
+            })
         
         }
 
         
         const fetchVideos = async() => {
             const data = await fetch(`${API_URL}/movie/${movieId}/videos?api_key=${API_KEY}`);
-            const resposnse = await data.json();
+            const response = await data.json();
             
-            
-            let getTrailer = resposnse.results.find(videos => videos.type === 'Trailer');
-            setTrailer(getTrailer);
+            if(response.results.length !== 0) {
+                let getTrailer = response.results.find(videos => videos.type === 'Trailer');                        
+                setTrailer(getTrailer.results[0].key);
+            }
         }
 
         const fetchSimilarMovies = async() => {
             const data = await fetch(`${API_URL}/movie/${movieId}/similar?api_key=${API_KEY}`);
-            const resposnse = await data.json();
+            const response = await data.json();
 
-            setSimilarMovies(resposnse.results);
+            if(response.results.length !== 0) {
+                setSimilarMovies(response.results);
+            }
         }
 
         fetchMovie();
@@ -77,9 +80,6 @@ const MovieDetails = ({match}) => {
     let time = movie.runtime;
     var Hours = Math.floor(time /60);
     var minutes = time % 60;
-
-    // Trailer link
-    const trailerLink = `https://www.youtube.com/watch?v=${trailer.key}`;
 
     if (loading) {
         return (
@@ -101,13 +101,11 @@ const MovieDetails = ({match}) => {
                 <section className="poster" style={{ backgroundImage: `url(${movie_poster})` }}></section>
 
                 <section className="content">
-                    {trailer.key !== null && trailer.key !== undefined && trailer.key !== '' ? (    
-                        <a href={trailerLink} target="_blank" rel="noreferrer" className="play">
+                    {trailer.key ? (    
+                        <a href={`https://www.youtube.com/watch?v=${trailer.key}`} target="_blank" rel="noreferrer" className="play">
                             <i className="material-icons-outlined">play_circle_outline</i>
                         </a>
-                    ) : (
-                        <React.Fragment />
-                    )}
+                    ) : null }
                     <div className="heading">
                         <h1 className="movieTitle">{movie.original_title}</h1>
                     </div>
