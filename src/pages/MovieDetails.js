@@ -49,8 +49,8 @@ const MovieDetails = ({match}) => {
             const response = await data.json();
             
             if(response.results.length !== 0) {
-                let getTrailer = response.results.find(videos => videos.type === 'Trailer');                        
-                setTrailer(getTrailer.results[0].key);
+                let getTrailer = response.results[0];                        
+                setTrailer(getTrailer.key);
             }
         }
 
@@ -66,7 +66,6 @@ const MovieDetails = ({match}) => {
         fetchMovie();
         fetchVideos();
         fetchSimilarMovies();
-
 
     }, [movieId]);
 
@@ -101,8 +100,8 @@ const MovieDetails = ({match}) => {
                 <section className="poster" style={{ backgroundImage: `url(${movie_poster})` }}></section>
 
                 <section className="content">
-                    {trailer.key ? (    
-                        <a href={`https://www.youtube.com/watch?v=${trailer.key}`} target="_blank" rel="noreferrer" className="play">
+                    {trailer ? (    
+                        <a href={`https://www.youtube.com/watch?v=${trailer}`} target="_blank" rel="noreferrer" className="play">
                             <i className="material-icons-outlined">play_circle_outline</i>
                         </a>
                     ) : null }
