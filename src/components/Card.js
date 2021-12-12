@@ -24,7 +24,7 @@ const Card = ({ movieData }) => {
         <div className="card" key={movieData.id}>
             <span className="card__rating">
                 <i className="material-icons-outlined">star</i>
-                {movieData.vote_average}
+                {movieData.vote_average.toFixed(1)}
             </span>
             <Link to={`/movie/${movieData.id}`} className="card__cover">
                 <img src={poster()} className="img-responsive" alt={movieData.original_title} />

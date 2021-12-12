@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Loader from '../components/Loader';
 import Error from '../components/Error';
 import Movielist from '../components/Movielist';
+import PersonList from '../components/PersonList';
 import { API_KEY, API_URL, posterURL } from '../api/config';
 
 const MovieDetails = ({match}) => {
@@ -14,6 +15,7 @@ const MovieDetails = ({match}) => {
 
     const [trailer, setTrailer] = useState([]);
     const [similarMovies, setSimilarMovies] = useState([]);
+    const [cast, setCast] = useState([]);
     
     const [loading, setLoading] = useState(1);
     const [error, setError] = useState(0);
@@ -63,9 +65,18 @@ const MovieDetails = ({match}) => {
             }
         }
 
+        // Fetch Credits
+        const fetchCast = async () => {
+            const data = await fetch(`${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}`)
+            const response = await data.json();
+    
+            setCast(response.cast);
+        }
+
         fetchMovie();
         fetchVideos();
         fetchSimilarMovies();
+        fetchCast();
 
     }, [movieId]);
 
@@ -105,9 +116,10 @@ const MovieDetails = ({match}) => {
                             <i className="material-icons-outlined">play_circle_outline</i>
                         </a>
                     ) : null }
-                    <div className="heading">
+                    <div className="heading flex-column">
                         <h1 className="movieTitle">{movie.original_title}</h1>
                     </div>
+                    <p>{movie.tagline}</p>
                     <ul className="detail-list">
                         <li><i className="material-icons-outlined">star</i> {movie.vote_average}</li>
                         <li><i className="material-icons-outlined">bolt</i>
@@ -122,6 +134,10 @@ const MovieDetails = ({match}) => {
                     <div className="movie__desc">
                         {movie.overview}
                     </div>
+                </section>
+
+                <section className="">
+                    <PersonList cast={cast.slice(0, 10)}> </PersonList>
                 </section>
 
                 {similarMovies !== undefined && similarMovies !== null && similarMovies.length !== 0 ? (

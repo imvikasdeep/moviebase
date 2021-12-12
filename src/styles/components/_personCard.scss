@@ -1,0 +1,41 @@
+.person-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
+
+.person {
+    text-align: center;
+    flex-shrink: 0;
+    width: 180px;
+    box-shadow: 0 0 10px -1px darken($mid-blue, 9%);
+    margin: 1rem .5rem;
+    border-radius: 10px;
+
+    &:first-child {
+        margin-left: 5px;
+    }
+
+    .__img {
+        margin: 1rem auto 0;
+        height: 190px;
+        width: 150px;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 0 #333;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .__name {
+        margin-top: 1.5rem;
+
+        .__character {
+            color: #999;
+        }
+    }
+}
