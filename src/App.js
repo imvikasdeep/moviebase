@@ -8,6 +8,7 @@ import Lost from './pages/Lost';
 import Upcoming from './pages/Upcoming';
 import TopRated from './pages/TopRated';
 import Trending from './pages/Trending';
+import Person from './pages/Person';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './styles/main.scss';
 
@@ -25,6 +26,7 @@ function App() {
 				<Route path="/trending" exact={true} component={Trending} />
 				<Route path="/genre/:type" exact={true} render={props => <Genre {...props} />} />
 				<Route path="/search/:search" exact={true} render={props => <Search {...props} />} />
+				<Route path="/person/:id" exact={true} component={Person} />
 				<Route component={Lost} exact={true} />
 			</Switch>
 
