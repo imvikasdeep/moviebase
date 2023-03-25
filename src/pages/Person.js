@@ -23,7 +23,7 @@ const Person = ({match}) => {
         }
     } 
 
-    useEffect (() => {
+    useEffect ((person) => {
         
     // Fetch Person details
     let fetchPersonDetails = async () => {

@@ -3,7 +3,7 @@ import { profileImagePath } from '../api/config';
 import { Link } from 'react-router-dom';
 import ProfilePlaceHolderMale from '../images/profile-placeholder-male.jpg';
 import ProfilePlaceHolderFemale from '../images/profile-placeholder-female.jpg';
-import ImageNotFound from '../images/not-found.png';
+// import ImageNotFound from '../images/not-found.png';
 
 const PersonCard = ({person}) => {
 
@@ -11,7 +11,7 @@ const PersonCard = ({person}) => {
         
         // check if poster is not null
         if (!person.profile_path) {
-            if (person.gender == 2) {
+            if (person.gender === 2) {
                 return ProfilePlaceHolderMale;
             } else {
                 return ProfilePlaceHolderFemale;
