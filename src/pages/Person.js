@@ -46,7 +46,7 @@ const Person = ({match}) => {
     }
 
         fetchPersonDetails();
-        // console.log(person);
+        console.log(person);
     }, [personId]);
 
     if (loading) {
@@ -62,19 +62,30 @@ const Person = ({match}) => {
     }
 
     return (
-        <main className="personDetails">
-            
+        <main>
             <div className="container">
                 <div className="content">
-                    <div className="profile_img">
-                        <img src={profileImage()} alt={person.name}/>
-                    </div>
-                    <div className="profile_">
+
+                    <div className="personDetails">
+
+                        <div className="_overview">
+                            <div className="__img">
+                                <img className="img-responsive" src={profileImage()} alt={person.name} title={person.name}/>
+                            </div>
+                        </div>
+
+                        <div className="_summary">
+                            <h1>{person.name}</h1>
+                            <div>
+                                <h2>Biography</h2>
+                                <p>{person.biography}</p>
+                            </div>
+                        </div>
 
                     </div>
+
                 </div>
             </div>
-
         </main>
     )
 }

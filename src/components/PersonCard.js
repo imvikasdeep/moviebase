@@ -1,6 +1,8 @@
 import React from 'react';
 import { profileImagePath } from '../api/config';
 import { Link } from 'react-router-dom';
+import ProfilePlaceHolderMale from '../images/profile-placeholder-male.jpg';
+import ProfilePlaceHolderFemale from '../images/profile-placeholder-female.jpg';
 import ImageNotFound from '../images/not-found.png';
 
 const PersonCard = ({person}) => {
@@ -9,7 +11,11 @@ const PersonCard = ({person}) => {
         
         // check if poster is not null
         if (!person.profile_path) {
-           return ImageNotFound;
+            if (person.gender == 2) {
+                return ProfilePlaceHolderMale;
+            } else {
+                return ProfilePlaceHolderFemale;
+            }
         } else {
             return `${profileImagePath}/w138_and_h175_face/${person.profile_path}`;
         }
